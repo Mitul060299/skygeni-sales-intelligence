@@ -41,6 +41,26 @@ def engineer_risk_features(
     df_features["blended_win_prob"] = df_features[prob_columns].mean(axis=1)
     df_features["blended_risk_prob"] = 1 - df_features["blended_win_prob"]
 
+    segment_cycle_columns = []
+    for segment_type in SEGMENT_COLUMNS:
+        median_cycle_map = df_features.groupby(segment_type)["sales_cycle_days"].median()
+        median_col = f"median_cycle_{segment_type}"
+        df_features[median_col] = df_features[segment_type].map(median_cycle_map)
+        segment_cycle_columns.append(median_col)
+
+    overall_median_cycle = df_features["sales_cycle_days"].median()
+    segment_median_cycle = df_features[segment_cycle_columns].mean(axis=1)
+    segment_median_cycle = segment_median_cycle.fillna(overall_median_cycle)
+    cycle_denominator = df_features["sales_cycle_days"].replace(0, np.nan)
+    aging_factor = (segment_median_cycle / cycle_denominator).clip(upper=1.0)
+    df_features["aging_factor"] = aging_factor.fillna(1.0)
+    df_features["rapv_aging_value"] = (
+        df_features["deal_amount"] * df_features["blended_win_prob"] * df_features["aging_factor"]
+    )
+
+    rem_score = (df_features["blended_win_prob"] * df_features["deal_amount"]) / cycle_denominator
+    df_features["rem_score"] = rem_score.fillna(0.0)
+
     df_features["deal_amount_log"] = np.log1p(df_features["deal_amount"])
     median_amount = df_features["deal_amount"].quantile(LARGE_DEAL_PERCENTILE / 100)
     df_features["is_large_deal"] = (df_features["deal_amount"] > median_amount).astype(int)

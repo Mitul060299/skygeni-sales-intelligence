@@ -63,6 +63,7 @@ MODEL_FEATURES = [
     "win_prob_lead_source",
     "win_prob_region",
     "blended_win_prob",
+    "rem_score",
     "deal_amount_log",
     "is_large_deal",
     "sales_cycle_normalized",

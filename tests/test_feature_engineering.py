@@ -27,5 +27,7 @@ def test_engineer_risk_features() -> None:
     df_features = engineer_risk_features(df, segment_probs)
 
     assert "blended_win_prob" in df_features.columns
+    assert "rem_score" in df_features.columns
+    assert "rapv_aging_value" in df_features.columns
     assert "deal_amount_log" in df_features.columns
     assert "is_long_cycle" in df_features.columns

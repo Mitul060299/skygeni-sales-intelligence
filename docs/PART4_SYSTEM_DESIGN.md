@@ -33,7 +33,7 @@ SkyGeni's Sales Intelligence Platform uses machine learning to predict deal risk
 - Nightly batch scoring of all open deals (updated risk scores by 3 AM)
 - Real-time risk assessment via API (<200ms response time)
 - Automated alerts for critical deals (immediate Slack + email)
-- Interactive dashboard for pipeline insights (RAPV, momentum, trends)
+- Interactive dashboard for pipeline insights (RAPV, REM, trends)
 - Recommendation engine with prioritized actions per deal
 
 **Expected Impact:**
@@ -66,7 +66,7 @@ SkyGeni's Sales Intelligence Platform uses machine learning to predict deal risk
 - Customized recommendations based on deal characteristics
 
 **FR4: Dashboard**
-- Pipeline overview page (total value, RAPV, momentum score, risk distribution)
+- Pipeline overview page (total value, RAPV, REM score, risk distribution)
 - Deal list view (sortable by risk, amount, age, rep)
 - Rep performance comparison (win rate, avg risk score of portfolio)
 - Trend charts (win rate over time, deal volume, cycle time)
@@ -591,7 +591,7 @@ class AlertDispatcher:
         Send executive summary.
 
         Schedule: Monday 9 AM
-        Content: Win rate trend, RAPV, momentum, top issues
+        Content: Win rate trend, RAPV, REM, top issues
         """
 ```
 
@@ -965,7 +965,7 @@ Get pipeline health metrics for current tenant.
   "risk_adjusted_value": 3700000,
   "optimism_gap": 4500000,
   "optimism_gap_pct": 54.9,
-  "deal_momentum_score": 87380,
+  "rem_score": 87380,
   "win_rate_pct": 45.3,
   "avg_sales_cycle_days": 63.2,
   "total_open_deals": 506,
@@ -977,7 +977,7 @@ Get pipeline health metrics for current tenant.
   },
   "trend_indicators": {
     "win_rate_change_7d": 2.1,
-    "momentum_change_7d": -12.3,
+    "rem_change_7d": -12.3,
     "avg_cycle_change_7d": 3.5
   },
   "as_of": "2026-02-11T02:00:00Z"
@@ -1159,7 +1159,7 @@ Recommended Actions:
 
 **1. Pipeline Overview**
 - Total pipeline value and risk-adjusted pipeline value
-- RAPV, optimism gap, and momentum score
+- RAPV, optimism gap, and REM score
 - Risk distribution by category
 
 **2. Deal Risk Table**
@@ -1187,7 +1187,7 @@ Recommended Actions:
 +---------------------------------------------------------------+
 | Pipeline Overview     [Date Range] [Region] [Team]            |
 +---------------------------------------------------------------+
-| Pipeline Value: $8.2M  | RAPV: $3.7M | Momentum: 87,380       |
+| Pipeline Value: $8.2M  | RAPV: $3.7M | REM: 87,380            |
 +---------------------------------------------------------------+
 | Risk Distribution | Win Rate Trend | Cycle Time Trend         |
 +---------------------------------------------------------------+

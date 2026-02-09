@@ -66,17 +66,17 @@ python scripts/score_deals.py --input data/raw/skygeni_sales_data.csv
 
 ### Part 2: Custom Business Metrics
 
-**RAPV (Risk-Adjusted Pipeline Value)**
+**RAPV (Risk-Adjusted Pipeline Value with Aging Penalty)**
 ```
-RAPV = Σ (Deal Amount × Historical Win Probability by Segment)
+RAPV = Σ (Deal Amount × Segment Win Rate × Aging Factor)
 ```
-Replaces raw pipeline totals with realistic forecast value.
+Adds an aging penalty for deals older than the segment median cycle.
 
-**Deal Momentum Score**
+**Revenue Execution Momentum (REM)**
 ```
-Momentum = Win Rate × (1 / Avg Sales Cycle Days)
+REM = (Win Rate × Avg Deal Size) / Avg Sales Cycle Days
 ```
-Captures both conversion quality and velocity.
+Measures revenue execution per day (conversion, magnitude, and speed).
 
 ### Part 3: Deal Risk Scoring Engine
 - Interpretable classifier with segment priors and temporal signals.

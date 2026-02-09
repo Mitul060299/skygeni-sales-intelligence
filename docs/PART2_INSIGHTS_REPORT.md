@@ -6,7 +6,7 @@ The EDA confirms the CRO concern: pipeline volume is healthy, but conversion eff
 
 Key outputs:
 - 3 actionable business insights
-- 2 custom metrics (RAPV and Deal Momentum Score)
+- 2 custom metrics (RAPV with aging penalty and REM)
 - Recommended actions tied to each insight
 
 ## Dataset Overview
@@ -18,21 +18,24 @@ Key outputs:
 
 ## Custom Metrics
 
-### 1) Risk-Adjusted Pipeline Value (RAPV)
+### 1) Risk-Adjusted Pipeline Value (RAPV) with Aging Penalty
 
 **Definition:**
-$\text{RAPV} = \sum (\text{Deal Amount} \times \text{Segment Win Probability})$
+$\text{RAPV} = \sum (\text{Deal Amount} \times \text{Segment Win Rate} \times \text{Aging Factor})$
+
+**Aging Factor:**
+$\text{Aging Factor} = \min\left(1, \frac{\text{Segment Median Cycle}}{\text{Deal Cycle Days}}\right)$
 
 **Why it matters:**
-Raw pipeline value overstates reality when win rates vary by segment. RAPV gives leadership a truer forecast for revenue planning and resource allocation.
+RAPV corrects for segment performance and discounts deals that are older than their segment median cycle, producing a more realistic revenue forecast.
 
-### 2) Deal Momentum Score
+### 2) Revenue Execution Momentum (REM)
 
 **Definition:**
-$\text{Momentum} = \text{Win Rate} \times \left(\frac{1}{\text{Avg Sales Cycle Days}}\right)$
+$\text{REM} = \frac{\text{Win Rate} \times \text{Avg Deal Size}}{\text{Avg Sales Cycle Days}}$
 
 **Why it matters:**
-Momentum captures both conversion quality and velocity. A segment can look healthy on win rate alone but still be dragging revenue if cycles are long.
+REM captures conversion efficiency, revenue magnitude, and speed in a single metric. It is a revenue-per-day view of execution quality.
 
 ## Key Business Insights
 
@@ -65,7 +68,7 @@ Momentum captures both conversion quality and velocity. A segment can look healt
 The notebook includes:
 - Win rate by segment (industry, region, product, lead source)
 - RAPV vs raw pipeline comparison
-- Momentum score ranking by segment
+- REM ranking by segment
 - Sales cycle distribution and correlation checks
 
 ## Business Takeaways

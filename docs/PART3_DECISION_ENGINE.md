@@ -21,6 +21,7 @@ Core features used by the model:
 - Blended win probability across segments
 - Deal size signals (log deal amount, large deal flag)
 - Sales cycle signals (normalized cycle length, long-cycle flag)
+- Revenue Execution Momentum (REM)
 - Temporal signals (Q4 flag, quarter-end flag)
 
 ## Model Selection
