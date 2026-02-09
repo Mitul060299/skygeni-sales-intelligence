@@ -1,7 +1,7 @@
 # SkyGeni Sales Intelligence Challenge
 ## AI-Driven Deal Risk Scoring System
 
-**Author:** Your Name
+**Author:** Mitul Srivastava
 **Role:** Data Science / Applied AI Engineer
 **Date:** February 2026
 
@@ -45,7 +45,7 @@ This system diagnoses root causes and prevents revenue leakage through early int
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/skygeni-sales-intelligence.git
+git clone https://github.com/Mitul060299/skygeni-sales-intelligence.git
 cd skygeni-sales-intelligence
 
 # Create virtual environment
@@ -188,6 +188,14 @@ Detailed documentation available in /docs:
 
 ---
 
+## Results Artifacts
+
+Generated outputs are stored in outputs/:
+- outputs/reports/eda_results.pkl (EDA summary artifact)
+- outputs/reports/risk_scores.csv (scored deals with risk categories)
+
+---
+
 ## Testing
 
 ```bash
@@ -244,5 +252,5 @@ This project is created for the SkyGeni Sales Intelligence Challenge.
 
 ## Contact
 
-Your Name - your.email@example.com
-Project Link: https://github.com/yourusername/skygeni-sales-intelligence
+Mitul Srivastava - srivastavamitul00@gmail.com - +91 9582480350
+Project Link: https://github.com/Mitul060299/skygeni-sales-intelligence
