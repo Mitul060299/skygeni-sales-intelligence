@@ -1,185 +1,172 @@
-# SkyGeni Sales Intelligence Challenge
-## AI-Driven Deal Risk Scoring System
+# 🎯 SkyGeni Sales Intelligence Platform
+### AI-Driven Deal Risk Scoring and Revenue Recovery System
 
-**Author:** Mitul Srivastava
-**Role:** Data Science / Applied AI Engineer
-**Date:** February 2026
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange.svg)](https://jupyter.org/)
 
----
-
-## Project Overview
-
-This project builds an AI-driven sales intelligence system for B2B SaaS companies to:
-- Identify deals at risk of loss
-- Understand win/loss drivers
-- Generate actionable recommendations for sales teams
-
-**Business Context:**
-A B2B SaaS company experienced declining win rates despite healthy pipeline volume.
-This system diagnoses root causes and prevents revenue leakage through early intervention.
+> **TL;DR:** Built an ML system that ranks at-risk B2B SaaS deals and recommends interventions.
+> It introduces RAPV (Risk-Adjusted Pipeline Value) to expose forecast inflation and prioritizes
+> sales actions based on loss probability and key drivers.
 
 ---
 
-## Key Results
+## 📈 Project Impact
 
-### Part 2: Data Exploration & Insights
-- **3 Critical Business Insights** identified:
-	1. 55% pipeline overestimation (RAPV metric)
-	2. 4.5% lead source efficiency gap
-	3. Sales cycle inefficiency (no correlation with deal size)
-
-- **2 Custom Metrics** developed:
-	1. Deal Momentum Score (win rate x velocity)
-	2. Risk-Adjusted Pipeline Value (RAPV)
-
-### Part 3: Decision Engine
-- **Risk Scoring Model**: 0.509 ROC-AUC
-- **Business Impact**: $3,443,466 potential revenue recovery
-- **Actionable Output**: Specific recommendations per deal
+| Metric | Value | Impact |
+|--------|-------|--------|
+| **Pipeline Overestimation** | 55% gap (RAPV vs raw) | Forecasts corrected for realism |
+| **Potential Revenue Recovery** | $3,443,466 | Savings from targeted interventions |
+| **Risk Scoring Model** | 0.509 ROC-AUC | Interpretable baseline for prioritization |
+| **Risk Coverage** | 658 high-risk deals | Focused manager attention |
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
-### Installation
-
+### Option 1: View Insights (No Setup Required)
 ```bash
-# Clone repository
+docs/PART2_INSIGHTS_REPORT.md
+docs/PART3_DECISION_ENGINE.md
+docs/PART4_SYSTEM_DESIGN.md
+docs/PART5_REFLECTION.md
+```
+
+### Option 2: Run Notebooks (5 Minutes)
+```bash
 git clone https://github.com/Mitul060299/skygeni-sales-intelligence.git
 cd skygeni-sales-intelligence
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Install package in development mode
-pip install -e .
-```
-
-### Usage
-
-```bash
-# Run EDA
-python scripts/run_eda.py
-
-# Train risk scoring model
-python scripts/train_risk_model.py
-
-# Score deals
-python scripts/score_deals.py --input data/raw/new_deals.csv --output outputs/risk_scores.csv
-```
-
-### Jupyter Notebooks
-
-```bash
 jupyter notebook notebooks/
 ```
 
+### Option 3: Run Production Code (Full Experience)
+```bash
+pip install -e .
+python scripts/run_eda.py
+python scripts/train_risk_model.py
+python scripts/score_deals.py --input data/raw/skygeni_sales_data.csv
+```
+
 ---
 
-## Project Structure
+## 🧠 The Problem
+
+- A B2B SaaS company has healthy pipeline volume but declining win rates.
+- CRO needs diagnostic clarity on what changed and what actions to take.
+- The goal is a decision system, not just a model: insights, risk scoring, and interventions.
+
+---
+
+## 💡 The Solution
+
+### Part 1: Business Framing
+- Focus on conversion efficiency, not lead volume.
+- Key questions: which segments are underperforming, where deals stall, and what actions change outcomes.
+- Core metrics: win rate by segment, stage conversion, sales cycle, pipeline mix, ACV.
+
+### Part 2: Custom Business Metrics
+
+**RAPV (Risk-Adjusted Pipeline Value)**
+```
+RAPV = Σ (Deal Amount × Historical Win Probability by Segment)
+```
+Replaces raw pipeline totals with realistic forecast value.
+
+**Deal Momentum Score**
+```
+Momentum = Win Rate × (1 / Avg Sales Cycle Days)
+```
+Captures both conversion quality and velocity.
+
+### Part 3: Deal Risk Scoring Engine
+- Interpretable classifier with segment priors and temporal signals.
+- Outputs risk score (0-100), category, top drivers, and recommended actions.
+- Enables managers to focus on critical and high-risk deals first.
+
+### Part 4: Production System Design
+- Batch + real-time scoring, alerting, and dashboards.
+- Multi-tenant isolation, model versioning, and observability.
+- Failure cases and recovery paths documented.
+
+---
+
+## 📊 Key Results
+
+### Business Insights
+- **Pipeline overestimation:** RAPV reveals a 55% optimism gap.
+- **Lead source gap:** Partner leads convert worse than inbound.
+- **Sales cycle inefficiency:** Longer cycles correlate with lower win rates, not higher ACV.
+
+### Model Outputs
+| Output | Description |
+|--------|-------------|
+| Risk Score | 0-100 loss probability rank |
+| Risk Category | Low / Medium / High / Critical |
+| Top Drivers | 3 strongest risk factors |
+| Actions | Prioritized interventions |
+
+---
+
+## 🛠️ Tech Stack
+
+### Data and ML
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?logo=scikit-learn&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange.svg)
+
+### Production Design (Part 4)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+
+---
+
+## 📁 Project Structure
 
 ```
 skygeni-sales-intelligence/
-├── README.md
-├── requirements.txt
-├── setup.py
-├── .gitignore
-├── data/
-│   ├── raw/
-│   │   └── skygeni_sales_data.csv
-│   ├── processed/
-│   │   └── .gitkeep
-│   └── README.md
-├── notebooks/
-│   ├── 01_EDA.ipynb
-│   ├── 02_Deal_Risk_Scoring.ipynb
-│   ├── 02_driver_analysis.ipynb
-│   └── README.md
-├── src/
-│   ├── __init__.py
+│
+├── 📊 data/
+│   ├── raw/                     # Original CSV data
+│   └── processed/               # Engineered features
+│
+├── 📓 notebooks/
+│   ├── 01_EDA.ipynb             # Exploratory analysis
+│   └── 02_Deal_Risk_Scoring.ipynb  # Model development
+│
+├── 🔧 src/                      # Production code
 │   ├── config.py
 │   ├── data/
-│   │   ├── __init__.py
-│   │   └── data_loader.py
 │   ├── features/
-│   │   ├── __init__.py
-│   │   ├── segment_probabilities.py
-│   │   └── feature_engineering.py
 │   ├── models/
-│   │   ├── __init__.py
-│   │   ├── risk_scorer.py
-│   │   └── model_evaluation.py
 │   ├── recommendations/
-│   │   ├── __init__.py
-│   │   └── recommendation_engine.py
 │   └── utils/
-│       ├── __init__.py
-│       └── helpers.py
-├── models/
-│   └── .gitkeep
-├── outputs/
-│   ├── figures/
-│   │   └── .gitkeep
-│   ├── reports/
-│   │   ├── .gitkeep
-│   │   └── eda_results.pkl
-│   └── README.md
-├── tests/
-│   ├── __init__.py
-│   ├── test_data_loader.py
-│   ├── test_feature_engineering.py
-│   └── test_risk_scorer.py
-├── docs/
-│   ├── PART1_PROBLEM_FRAMING.md
-│   ├── PART2_INSIGHTS_REPORT.md
-│   ├── PART3_DECISION_ENGINE.md
-│   ├── PART4_SYSTEM_DESIGN.md
-│   └── PART5_REFLECTION.md
-└── scripts/
-		├── run_eda.py
-		├── train_risk_model.py
-		└── score_deals.py
+│
+├── 🚀 scripts/
+│   ├── run_eda.py
+│   ├── train_risk_model.py
+│   └── score_deals.py
+│
+├── ✅ tests/
+├── 📖 docs/                     # Detailed writeups by part
+└── README.md
 ```
 
 ---
 
-## Tech Stack
+## 🧪 Testing
 
-- **Python 3.10+**
-- **Data Analysis**: pandas, numpy
-- **Machine Learning**: scikit-learn
-- **Visualization**: matplotlib, seaborn
-- **Notebooks**: Jupyter
+```bash
+pytest tests/
+```
 
 ---
 
-## Model Performance
+## 📚 Documentation
 
-| Metric | Value |
-|--------|-------|
-| ROC-AUC | 0.509 |
-| Precision (Lost) | 0.56 |
-| Recall (Lost) | 0.70 |
-| Calibration Error | TBD |
-
----
-
-## Business Impact
-
-- **Deals Analyzed**: 5,000 historical deals
-- **High-Risk Deals Identified**: 658 (65.8%)
-- **Potential Revenue Recovery**: $3,443,466
-- **ROI**: TBD
-
----
-
-## Documentation
-
-Detailed documentation available in /docs:
 - [Part 1: Problem Framing](docs/PART1_PROBLEM_FRAMING.md)
 - [Part 2: Insights Report](docs/PART2_INSIGHTS_REPORT.md)
 - [Part 3: Decision Engine](docs/PART3_DECISION_ENGINE.md)
@@ -188,69 +175,47 @@ Detailed documentation available in /docs:
 
 ---
 
-## Results Artifacts
+## 🚀 Future Enhancements
 
-Generated outputs are stored in outputs/:
-- outputs/reports/eda_results.pkl (EDA summary artifact)
-- outputs/reports/risk_scores.csv (scored deals with risk categories)
-
----
-
-## Testing
-
-```bash
-# Run all tests
-pytest tests/
-
-# Run with coverage
-pytest --cov=src tests/
-```
+- Drift monitoring and automated retraining
+- SHAP-based explanations for risk drivers
+- Feedback loop for action effectiveness
+- CRM onboarding automation and field mapping
 
 ---
 
-## Development Workflow
+## 🎓 What I Learned
 
-1. **EDA**: Explore data in notebooks/01_EDA.ipynb
-2. **Modeling**: Develop models in notebooks/02_Deal_Risk_Scoring.ipynb
-3. **Productionize**: Extract code to src/ modules
-4. **Test**: Write tests in tests/
-5. **Deploy**: Use scripts in scripts/ for production
-
----
-
-## Key Features
-
-### 1. Risk Scoring System
-- Predicts deal loss probability (0-100 score)
-- Categorizes as Low/Medium/High/Critical risk
-- Identifies top risk factors per deal
-
-### 2. Recommendation Engine
-- Generates specific actions based on risk factors
-- Prioritized by urgency (immediate/weekly/ongoing)
-- Customized per deal characteristics
-
-### 3. RAPV Metric
-- Risk-Adjusted Pipeline Value
-- Realistic revenue forecasting
-- Segment-based probability weighting
+- Translating CRO-level business questions into measurable metrics
+- Designing decision systems, not just ML models
+- Balancing interpretability with predictive performance
+- Building an architecture that supports batch + real-time scoring
 
 ---
 
-## License
+## 🐛 Known Issues and Limitations
 
-This project is created for the SkyGeni Sales Intelligence Challenge.
-
----
-
-## Acknowledgments
-
-- SkyGeni for the challenge opportunity
-- Inspiration from modern RevOps and Sales Intelligence platforms
+- Training data is limited to historical CRM records without pricing or competitor context
+- Segment win rates can drift in market shifts
+- Recommendation rules need outcome feedback to validate impact
 
 ---
 
-## Contact
+## 👤 Author
 
-Mitul Srivastava - srivastavamitul00@gmail.com - +91 9582480350
-Project Link: https://github.com/Mitul060299/skygeni-sales-intelligence
+**Mitul Srivastava**
+
+- Email: srivastavamitul00@gmail.com
+- Phone: +91 9582480350
+- GitHub: https://github.com/Mitul060299
+
+---
+
+## 🙏 Acknowledgments
+
+- SkyGeni for the challenge prompt and evaluation framework
+- Inspiration from modern revenue operations and sales intelligence practices
+
+---
+
+If this project is helpful, consider starring the repo.
