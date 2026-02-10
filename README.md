@@ -478,7 +478,7 @@ See [Part 5: Reflection](docs/PART5_REFLECTION.md) for detailed discussion.
 
 **Role:** Data Science / Applied AI Engineer Candidate
 **Challenge:** SkyGeni Sales Intelligence System
-**Submission Date:** February 2026
+**Submission Date:** 0 February 2026
 
 ---
 
