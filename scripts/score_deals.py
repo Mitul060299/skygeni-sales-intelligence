@@ -55,6 +55,10 @@ def main() -> None:
     df_features = engineer_risk_features(df, segment_probs)
 
     model_path = MODELS_DIR / "risk_scoring_model.pkl"
+    if not model_path.exists():
+        raise FileNotFoundError(
+            f"Model not found at {model_path}. Run scripts/train_risk_model.py first."
+        )
     model = joblib.load(model_path)
 
     X = df_features[MODEL_FEATURES]

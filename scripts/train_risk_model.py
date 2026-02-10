@@ -16,7 +16,7 @@ import joblib
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from config import MODEL_FEATURES, RANDOM_STATE, SALES_DATA_PATH, MODELS_DIR
+from config import MODEL_FEATURES, RANDOM_STATE, SALES_DATA_PATH, MODELS_DIR, SEGMENT_COLUMNS
 from data.data_loader import add_temporal_features, load_sales_data, prepare_target_variable
 from features.feature_engineering import engineer_risk_features
 from features.segment_probabilities import calculate_segment_probabilities
@@ -34,7 +34,7 @@ def main() -> None:
     df = prepare_target_variable(df)
     df = add_temporal_features(df)
 
-    segment_probs = calculate_segment_probabilities(df, ["industry", "product_type", "lead_source", "region"])
+    segment_probs = calculate_segment_probabilities(df, SEGMENT_COLUMNS)
     df_features = engineer_risk_features(df, segment_probs)
 
     X = df_features[MODEL_FEATURES]

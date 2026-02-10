@@ -2,7 +2,7 @@
 Feature engineering utilities for risk scoring.
 """
 
-from typing import Dict
+from typing import Dict, Optional
 
 import numpy as np
 import pandas as pd
@@ -12,12 +12,15 @@ from config import (
     DEAL_SIZE_LABELS,
     LARGE_DEAL_PERCENTILE,
     LONG_CYCLE_THRESHOLD,
+    OVERALL_WIN_RATE,
     SEGMENT_COLUMNS,
 )
 
 
 def engineer_risk_features(
-    df: pd.DataFrame, segment_probs: Dict[str, Dict[str, float]]
+    df: pd.DataFrame,
+    segment_probs: Dict[str, Dict[str, float]],
+    overall_win_rate: Optional[float] = None,
 ) -> pd.DataFrame:
     """
     Create feature set for risk scoring model.
@@ -30,7 +33,12 @@ def engineer_risk_features(
         DataFrame with engineered features.
     """
     df_features = df.copy()
-    global_win_rate = (df_features["outcome"] == "Won").mean()
+    if overall_win_rate is not None:
+        global_win_rate = overall_win_rate
+    elif "outcome" in df_features.columns:
+        global_win_rate = (df_features["outcome"] == "Won").mean()
+    else:
+        global_win_rate = OVERALL_WIN_RATE
 
     for segment_type, prob_dict in segment_probs.items():
         feature_name = f"win_prob_{segment_type}"
