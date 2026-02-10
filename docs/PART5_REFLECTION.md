@@ -6,6 +6,24 @@
 - **Stable segment behavior:** The model assumes segment win rates (industry, product, lead source, region) stay relatively stable. Major shifts in market conditions or product mix would make these priors stale.
 - **Comparable sales process:** The scoring logic assumes sales cycles and stage progression are comparable across reps and regions. If processes differ materially, the same features may mean different outcomes.
 
+## Model Performance Reality Check
+
+Logistic Regression, Random Forest, Gradient Boosting, and XGBoost were tested.
+All models achieved ROC-AUC scores close to ~0.50. Gradient Boosting performed
+slightly better numerically (ROC-AUC ~0.509), but the difference is not
+statistically meaningful. Even after additional feature engineering (interaction
+features, relative features, percentile features, segment confidence features),
+model performance did not improve significantly and in some cases became worse.
+
+This weak performance indicates limited predictive signal in the available CRM
+dataset. The issue appears to be data limitations rather than model choice or
+tuning. The current feature set lacks behavioral and engagement-based signals
+that typically drive deal outcomes.
+
+This model should not be considered production-ready for automated deal-level
+prediction. It is presented as an experimental analytical layer within a
+broader decision intelligence system.
+
 ## What Would Break in Production
 
 - **Schema or CRM workflow changes:** New stages, renamed fields, or custom CRM configurations could break ingestion, feature engineering, or alert routing.

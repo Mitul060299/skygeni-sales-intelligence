@@ -27,11 +27,11 @@ This document describes the production architecture for SkyGeni's Sales Intellig
 B2B SaaS companies experience declining win rates despite healthy pipeline volume. Sales teams lack visibility into which deals are at risk and why, leading to missed revenue targets and inefficient resource allocation. The CRO needs a data-driven system to identify at-risk deals early and provide actionable intervention strategies.
 
 **Solution:**
-SkyGeni's Sales Intelligence Platform uses machine learning to predict deal risk, identify root causes, and recommend specific actions. The system combines historical segment performance (RAPV methodology from Part 2) with real-time deal characteristics to generate risk scores and targeted interventions.
+SkyGeni's Sales Intelligence Platform uses machine learning to predict deal risk, identify root causes, and recommend specific actions. The system combines historical segment performance (RAPV methodology from Part 2) with real-time deal characteristics to generate risk scores and targeted interventions, with automated deal-level prediction gated behind model quality thresholds and treated as experimental until performance improves.
 
 **Key Capabilities:**
 - Nightly batch scoring of all open deals (updated risk scores by 3 AM)
-- Real-time risk assessment via API (<200ms response time)
+- Real-time risk assessment via API (<200ms response time, experimental gating)
 - Automated alerts for critical deals (immediate Slack + email)
 - Interactive dashboard for pipeline insights (RAPV, REM, trends)
 - Recommendation engine with prioritized actions per deal
@@ -1031,17 +1031,19 @@ Get model performance metrics (admin only).
   "model_version": "v1.2.3",
   "deployed_at": "2026-02-01T00:00:00Z",
   "performance_metrics": {
-    "roc_auc": 0.823,
-    "precision_high_risk": 0.78,
-    "recall_high_risk": 0.71,
-    "calibration_error": 0.034,
-    "f1_score": 0.745
+    "roc_auc": 0.509,
+    "average_precision": 0.572,
+    "precision_high_risk": 0.56,
+    "recall_high_risk": 0.70,
+    "calibration_error": 0.091,
+    "f1_score": 0.51,
+    "model_status": "experimental"
   },
   "prediction_distribution": {
-    "low": 0.45,
-    "medium": 0.35,
-    "high": 0.15,
-    "critical": 0.05
+    "low": 0.01,
+    "medium": 0.33,
+    "high": 0.62,
+    "critical": 0.04
   },
   "drift_metrics": {
     "feature_drift_score": 0.12,
@@ -1281,6 +1283,7 @@ Recommended Actions:
 
 - 20% reduction in high-risk deal loss rate
 - 10% increase in pipeline predictability (forecast accuracy)
+- Model quality gate: ROC-AUC >= 0.60 required before automated deal-level predictions
 - > 60% weekly active usage by sales managers
 - < 2 second dashboard load time
 - < 200ms p95 scoring API latency

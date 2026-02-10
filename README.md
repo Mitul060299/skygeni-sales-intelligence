@@ -19,7 +19,7 @@ This repository contains my **complete submission** for the SkyGeni Sales Intell
 |------|----------------|-----------------|---------------|
 | **Part 1** | Problem Framing | Business problem definition, key questions, success metrics | [📄 docs/PART1_PROBLEM_FRAMING.md](docs/PART1_PROBLEM_FRAMING.md) |
 | **Part 2** | Data Exploration & Insights | EDA, 3 business insights, 2 custom metrics (RAPV, REM) | [📄 docs/PART2_INSIGHTS_REPORT.md](docs/PART2_INSIGHTS_REPORT.md)<br>[📓 notebooks/01_EDA.ipynb](notebooks/01_EDA.ipynb)<br>[📓 notebooks/02_driver_analysis.ipynb](notebooks/02_driver_analysis.ipynb) |
-| **Part 3** | Decision Engine | Deal risk scoring model with recommendations | [📄 docs/PART3_DECISION_ENGINE.md](docs/PART3_DECISION_ENGINE.md)<br>[📓 notebooks/02_Deal_Risk_Scoring.ipynb](notebooks/02_Deal_Risk_Scoring.ipynb) |
+| **Part 3** | Decision Engine | Deal risk scoring model with recommendations (experimental, gated deployment) | [📄 docs/PART3_DECISION_ENGINE.md](docs/PART3_DECISION_ENGINE.md)<br>[📓 notebooks/02_Deal_Risk_Scoring.ipynb](notebooks/02_Deal_Risk_Scoring.ipynb) |
 | **Part 4** | System Design | Production architecture, API design, deployment strategy | [📄 docs/PART4_SYSTEM_DESIGN.md](docs/PART4_SYSTEM_DESIGN.md) |
 | **Part 5** | Reflection | Assumptions, limitations, learnings, future work | [📄 docs/PART5_REFLECTION.md](docs/PART5_REFLECTION.md) |
 
@@ -33,7 +33,7 @@ This repository contains my **complete submission** for the SkyGeni Sales Intell
 |--------|-------|--------------|
 | **Pipeline Overestimation Discovered** | 61.3% gap (RAPV vs raw) | Corrects inflated revenue forecasts |
 | **Potential Revenue Recovery** | $3,443,466 | From targeting 658 high-risk deals |
-| **Model Performance** | 0.509 ROC-AUC | Interpretable baseline for prioritization |
+| **Model Performance** | 0.509 ROC-AUC | Interpretable baseline; not production-ready without gating |
 | **High-Risk Deals Identified** | 658 deals (65.8% of scored set) | Focused intervention targets |
 | **Custom Metrics Developed** | RAPV + REM | Better than traditional pipeline metrics |
 
@@ -69,9 +69,9 @@ This repository contains my **complete submission** for the SkyGeni Sales Intell
 **Quick assessment path (15 minutes):**
 1. [Executive Summary](docs/PART1_PROBLEM_FRAMING.md#executive-summary) - Business problem definition
 2. [Key Results Table](docs/PART2_INSIGHTS_REPORT.md#key-business-insights) - Business insights discovered
-3. [Model Output Example](docs/PART3_DECISION_ENGINE.md#example-risk-reports) - What the system produces
+3. [Decision Engine Outputs](docs/PART3_DECISION_ENGINE.md#outputs) - What the system produces
 4. [System Architecture Diagram](docs/PART4_SYSTEM_DESIGN.md#system-architecture-overview) - Production design
-5. [What I Learned](docs/PART5_REFLECTION.md#what-i-learned) - Self-awareness and growth
+5. [Reflection](docs/PART5_REFLECTION.md#part-5---reflection) - Self-awareness and growth
 
 ---
 
@@ -204,11 +204,11 @@ Built an **interpretable ML model** that scores deals and recommends actions.
 ### Model Performance
 | Metric | Value | Interpretation |
 |--------|-------|----------------|
-| ROC-AUC | 0.509 | Baseline discrimination |
-| Precision (High Risk) | Varies by threshold | Tunable for precision/recall tradeoff |
+| ROC-AUC | 0.509 | Weak discrimination; experimental only |
+| Precision (High Risk) | Varies by threshold | Tunable, but limited by signal |
 | Interpretability | High | Segment-based probabilities + clear risk factors |
 
-**Why baseline performance?** Prioritized **interpretability** and **actionability** over raw accuracy. Model uses transparent segment probabilities rather than black-box approach.
+**Reality check:** Logistic Regression, Random Forest, Gradient Boosting, and XGBoost were tested and all scored near ~0.50 ROC-AUC. The weak signal appears driven by CRM data limitations rather than model choice or tuning, so automated deal-level prediction remains gated until stronger behavioral or engagement features are available.
 
 **📄 Full methodology:** [Part 3: Decision Engine](docs/PART3_DECISION_ENGINE.md)
 **📓 Model notebook:** [02_Deal_Risk_Scoring.ipynb](notebooks/02_Deal_Risk_Scoring.ipynb)
