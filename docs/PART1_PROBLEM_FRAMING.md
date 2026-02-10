@@ -1,7 +1,7 @@
 # SkyGeni Sales Intelligence Challenge - Part 1: Problem Framing
 
 **Author:** Mitul Srivastava  
-**Date:** 0 February 2026  
+**Date:** 10 February 2026  
 **Challenge:** Data Science / Applied AI Engineer Role
 
 ---
