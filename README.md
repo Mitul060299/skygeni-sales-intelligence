@@ -21,7 +21,7 @@ This repository contains my **complete submission** for the SkyGeni Sales Intell
 | **Part 2** | Data Exploration & Insights | EDA, 3 business insights, 2 custom metrics (RAPV, REM) | [📄 docs/PART2_INSIGHTS_REPORT.md](docs/PART2_INSIGHTS_REPORT.md)<br>[📓 notebooks/01_EDA.ipynb](notebooks/01_EDA.ipynb)<br>[📓 notebooks/02_driver_analysis.ipynb](notebooks/02_driver_analysis.ipynb) |
 | **Part 3** | Decision Engine | Deal risk scoring model with recommendations (experimental, gated deployment) | [📄 docs/PART3_DECISION_ENGINE.md](docs/PART3_DECISION_ENGINE.md)<br>[📓 notebooks/02_Deal_Risk_Scoring.ipynb](notebooks/02_Deal_Risk_Scoring.ipynb) |
 | **Part 4** | System Design | Production architecture, API design, deployment strategy | [📄 docs/PART4_SYSTEM_DESIGN.md](docs/PART4_SYSTEM_DESIGN.md) |
-| **Part 5** | Reflection | Assumptions, limitations, learnings, future work | [📄 docs/PART5_REFLECTION.md](docs/PART5_REFLECTION.md) |
+| **Part 5** | Reflection | Assumptions, production risks, lessons learned, next steps | [📄 docs/PART5_REFLECTION.md](docs/PART5_REFLECTION.md) |
 
 **👉 Start here for evaluation:** [docs/PART1_PROBLEM_FRAMING.md](docs/PART1_PROBLEM_FRAMING.md) → Then follow Parts 2-5 in sequence
 
@@ -71,7 +71,7 @@ This repository contains my **complete submission** for the SkyGeni Sales Intell
 2. [Key Results Table](docs/PART2_INSIGHTS_REPORT.md#key-business-insights) - Business insights discovered
 3. [Decision Engine Outputs](docs/PART3_DECISION_ENGINE.md#outputs) - What the system produces
 4. [System Architecture Diagram](docs/PART4_SYSTEM_DESIGN.md#system-architecture-overview) - Production design
-5. [Reflection](docs/PART5_REFLECTION.md#part-5---reflection) - Self-awareness and growth
+5. [Reflection](docs/PART5_REFLECTION.md) - Assumptions, risks, and lessons learned
 
 ---
 

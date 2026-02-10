@@ -83,11 +83,11 @@ Great Algorithm + Weak Features = 0.509 (Poor)
 Average Algorithm + Strong Features = >0.70 (Good)
 ```
 
-**Honest Assessment:**  
-This model is not production-ready for automated decisions. It functions as:
-- Consistent prioritization framework (better than gut feel)
-- Transparent risk factor identification  
-- Accurate probability prediction
+**Assessment:**  
+This model is not production-ready for automated decisions. It currently serves as:
+- A consistent prioritization framework that reduces ad hoc judgment
+- Transparent risk factor identification
+- Probabilistic scoring with limited predictive value
 
 **What Would Fix This:**  
 Behavioral features from Outreach/SalesLoft/Gong (email engagement, call data, meeting frequency) to reach >0.70 ROC-AUC.
@@ -158,7 +158,7 @@ Behavioral features from Outreach/SalesLoft/Gong (email engagement, call data, m
 **What:**
 - Replace feature importance with SHAP values
 - Per-deal explanations with contribution scores
-- Counterfactual recommendations ("If cycle reduced to 45 days -> risk drops 15 points")
+- Counterfactual recommendations ("If cycle reduced to 45 days, risk drops 15 points")
 - Confidence intervals on risk factors
 
 **Example:**
@@ -189,7 +189,7 @@ What Would Help:
 **What:**
 - Data quality dashboard (missing fields, outliers, inconsistencies)
 - CRM field mapping tool (handle custom schemas)
-- Guided setup flow (connect -> map -> validate -> configure -> go live)
+- Guided setup flow (connect -> map -> validate -> configure -> launch)
 
 ---
 
@@ -203,49 +203,49 @@ Current recommendations are rule-based without validation:
 - "If Partner source -> engage partner manager"
 - "If long cycle -> create timeline"
 
-**Why I'm Not Confident:**
+**Basis for Low Confidence:**
 
-1. No Validation - Haven't tracked if reps follow recommendations or if they work
-2. Assumed Effectiveness - 20% save rate is made up, could be 5% or 40%
-3. Generic Advice - Same recommendations for all "critical" deals, doesn't account for context
-4. No Feedback Loop - Can't measure which actions actually save deals
+- No validation: There is no tracking of recommendation adoption or outcomes.
+- Assumed effectiveness: The 20% save rate is unverified and could vary widely.
+- Generic guidance: The same actions are applied across critical deals without context.
+- No feedback loop: There is no mechanism to measure action impact or improve guidance.
 
-**Contrast with Model Performance:**  
-The model is also poor (0.509 ROC-AUC), but at least I can measure that and I'm honest about it. For recommendations, I don't even have a way to measure quality yet.
+**Comparison to Model Performance:**  
+The model performance is low (0.509 ROC-AUC), but it is measurable and repeatable. Recommendation quality has not been measured, so its effectiveness is currently unknown.
 
-**What Would Give Me Confidence:**
-- Track which recommendations are followed
+**What Would Increase Confidence:**
+- Track which recommendations are adopted
 - Measure outcomes (win rate for intervention vs control)
-- A/B test different actions
-- Calculate actual effectiveness: "Exec call saved 35% of similar deals"
+- A/B test alternative actions
+- Quantify effectiveness (e.g., "Executive call improves win rates by 35% in comparable deals")
 
-**Why I'm Being Honest:**  
-It would be easy to claim the recommendations work, but without validation data, that's dishonest. Better to acknowledge: "This is a reasonable first version based on sales best practices, but needs real-world validation."
+**Rationale for Candor:**  
+It would be easy to claim the recommendations work, but that would be unsupported without validation data. It is more accurate to state: "This is a reasonable first version based on sales best practices that requires real-world validation."
 
 ---
 
 ## Summary: Key Learnings
 
-### What I Got Right:
+### Strengths:
 - Identified the business problem (quality, not quantity)
 - Developed useful custom metrics (RAPV, Deal Momentum)
-- Built transparent, interpretable system
-- Honest about model limitations
+- Built a transparent, interpretable system
+- Documented model limitations explicitly
 
-### What I Got Wrong:
-- Model performance insufficient (0.509 ROC-AUC)
-- Missing critical behavioral features
-- Recommendations untested (no validation)
-- Assumed 20% intervention success (not measured)
+### Gaps:
+- Model performance is insufficient (0.509 ROC-AUC)
+- Critical behavioral features are missing
+- Recommendations are untested (no validation)
+- The 20% intervention success rate is assumed
 
-### What I Learned:
-1. Features matter more than algorithms - Cannot overcome weak data with better models
-2. Production is not proof-of-concept - 0.509 ROC-AUC would never ship
-3. Validation is essential - Cannot claim effectiveness without measurement
-4. Honesty builds trust - Better to acknowledge limits than overpromise
+### Lessons Learned:
+1. Features matter more than algorithms; weak data limits modeling gains.
+2. Production standards exceed proof-of-concept; 0.509 ROC-AUC is not deployable.
+3. Validation is essential; effectiveness claims require measurement.
+4. Candid limitations improve trust and decision-making.
 
-### What I Would Do Differently:
-- Acquire behavioral data before building model
-- Set minimum performance threshold (>0.70 ROC-AUC)
-- Build feedback loop from day 1
-- Start simpler (rule-based prioritization) before claiming ML sophistication
+### Next Time:
+- Acquire behavioral data before model development
+- Set a minimum performance threshold (>0.70 ROC-AUC)
+- Build a feedback loop from day one
+- Start with rule-based prioritization before claiming ML sophistication
