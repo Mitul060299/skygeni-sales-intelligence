@@ -37,8 +37,8 @@ SkyGeni's Sales Intelligence Platform uses machine learning to predict deal risk
 - Recommendation engine with prioritized actions per deal
 
 **Expected Impact:**
-- Identify top 15-20% of deals at high/critical risk (worth $1-2M in revenue)
-- Enable early intervention to save 20% of these deals (~$250K-400K recovered)
+- Identify 658 high-risk deals in a 1,000-deal scored set (65.8%)
+- Potential revenue recovery: ~$3.44M from targeted interventions
 - Reduce time wasted on unsalvageable deals by 30%
 - Provide data-driven prioritization for 50+ sales reps
 
@@ -1100,10 +1100,10 @@ Recommended Actions:
 
 <h3>Pipeline Overview</h3>
 <ul>
-  <li>Total Open Deals: 342</li>
-  <li>High/Critical Risk: 47 (13.7%)</li>
-  <li>Pipeline Value: $8.2M</li>
-  <li>Risk-Adjusted Value: $3.7M (45% gap)</li>
+  <li>Scored Deals: 1,000 (latest batch)</li>
+  <li>High/Critical Risk: 658 (65.8%)</li>
+  <li>Potential Revenue Recovery: $3,443,466</li>
+  <li>RAPV Gap: 61.3% (see Part 2 for pipeline diagnostics)</li>
 </ul>
 
 <h3>Deals Needing Attention (Top 5)</h3>
@@ -1114,8 +1114,8 @@ Recommended Actions:
 
 <h3>Trends This Week</h3>
 <ul>
-  <li>Win rate up 2.1%</li>
-  <li>Average deal cycle increased 3 days</li>
+  <li>Lead source win-rate gap: 2.1 pp (Inbound vs Partner)</li>
+  <li>Average deal cycle: (live)</li>
 </ul>
 
 <a href="https://dashboard.skygeni.com">View Full Dashboard</a>
@@ -1187,7 +1187,7 @@ Recommended Actions:
 +---------------------------------------------------------------+
 | Pipeline Overview     [Date Range] [Region] [Team]            |
 +---------------------------------------------------------------+
-| Pipeline Value: $8.2M  | RAPV: $3.7M | REM: 87,380            |
+| Pipeline Value: (live)  | RAPV: (live) | REM: (live)            |
 +---------------------------------------------------------------+
 | Risk Distribution | Win Rate Trend | Cycle Time Trend         |
 +---------------------------------------------------------------+

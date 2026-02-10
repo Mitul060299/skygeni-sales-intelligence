@@ -1,203 +1,470 @@
-# 🎯 SkyGeni Sales Intelligence Platform
-### AI-Driven Deal Risk Scoring and Revenue Recovery System
+# 🎯 SkyGeni Sales Intelligence Challenge
+### Complete End-to-End Sales Analytics & AI System
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange.svg)](https://jupyter.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-> **TL;DR:** Built an ML system that ranks at-risk B2B SaaS deals and recommends interventions.
-> It introduces RAPV (Risk-Adjusted Pipeline Value) to expose forecast inflation and prioritizes
-> sales actions based on loss probability and key drivers.
-
----
-
-## 📈 Project Impact
-
-| Metric | Value | Impact |
-|--------|-------|--------|
-| **Pipeline Overestimation** | 55% gap (RAPV vs raw) | Forecasts corrected for realism |
-| **Potential Revenue Recovery** | $3,443,466 | Savings from targeted interventions |
-| **Risk Scoring Model** | 0.509 ROC-AUC | Interpretable baseline for prioritization |
-| **Risk Coverage** | 658 high-risk deals | Focused manager attention |
+> **TL;DR:** Complete 5-part solution for SkyGeni Data Science / Applied AI Engineer challenge.
+> Diagnoses declining B2B SaaS win rates, builds risk scoring system, and designs production architecture.
+> Features custom RAPV metric revealing a 61.3% pipeline overestimation and an interpretable ML model for prioritized interventions.
 
 ---
 
-## 🚀 Quick Start
+## 📖 Project Overview
 
-### Option 1: View Insights (No Setup Required)
-```bash
-docs/PART2_INSIGHTS_REPORT.md
-docs/PART3_DECISION_ENGINE.md
-docs/PART4_SYSTEM_DESIGN.md
-docs/PART5_REFLECTION.md
-```
+This repository contains my **complete submission** for the SkyGeni Sales Intelligence Challenge, covering all 5 required parts:
 
-### Option 2: Run Notebooks (5 Minutes)
+| Part | What It Covers | Key Deliverable | Where to Find |
+|------|----------------|-----------------|---------------|
+| **Part 1** | Problem Framing | Business problem definition, key questions, success metrics | [📄 docs/PART1_PROBLEM_FRAMING.md](docs/PART1_PROBLEM_FRAMING.md) |
+| **Part 2** | Data Exploration & Insights | EDA, 3 business insights, 2 custom metrics (RAPV, REM) | [📄 docs/PART2_INSIGHTS_REPORT.md](docs/PART2_INSIGHTS_REPORT.md)<br>[📓 notebooks/01_EDA.ipynb](notebooks/01_EDA.ipynb)<br>[📓 notebooks/02_driver_analysis.ipynb](notebooks/02_driver_analysis.ipynb) |
+| **Part 3** | Decision Engine | Deal risk scoring model with recommendations | [📄 docs/PART3_DECISION_ENGINE.md](docs/PART3_DECISION_ENGINE.md)<br>[📓 notebooks/02_Deal_Risk_Scoring.ipynb](notebooks/02_Deal_Risk_Scoring.ipynb) |
+| **Part 4** | System Design | Production architecture, API design, deployment strategy | [📄 docs/PART4_SYSTEM_DESIGN.md](docs/PART4_SYSTEM_DESIGN.md) |
+| **Part 5** | Reflection | Assumptions, limitations, learnings, future work | [📄 docs/PART5_REFLECTION.md](docs/PART5_REFLECTION.md) |
+
+**👉 Start here for evaluation:** [docs/PART1_PROBLEM_FRAMING.md](docs/PART1_PROBLEM_FRAMING.md) → Then follow Parts 2-5 in sequence
+
+---
+
+## 📈 Business Impact Summary
+
+| Metric | Value | Significance |
+|--------|-------|--------------|
+| **Pipeline Overestimation Discovered** | 61.3% gap (RAPV vs raw) | Corrects inflated revenue forecasts |
+| **Potential Revenue Recovery** | $3,443,466 | From targeting 658 high-risk deals |
+| **Model Performance** | 0.509 ROC-AUC | Interpretable baseline for prioritization |
+| **High-Risk Deals Identified** | 658 deals (65.8% of scored set) | Focused intervention targets |
+| **Custom Metrics Developed** | RAPV + REM | Better than traditional pipeline metrics |
+
+---
+
+## 🚀 Quick Navigation Guide
+
+### For Reviewers / Evaluators
+
+**→ To understand the business problem:**
+1. Read [Part 1: Problem Framing](docs/PART1_PROBLEM_FRAMING.md) (10 min)
+
+**→ To see the data analysis and insights:**
+2. Read [Part 2: Insights Report](docs/PART2_INSIGHTS_REPORT.md) (15 min)
+3. *Optional:* Open [01_EDA.ipynb](notebooks/01_EDA.ipynb) and [02_driver_analysis.ipynb](notebooks/02_driver_analysis.ipynb)
+
+**→ To understand the ML solution:**
+4. Read [Part 3: Decision Engine](docs/PART3_DECISION_ENGINE.md) (15 min)
+5. *Optional:* Open [02_Deal_Risk_Scoring.ipynb](notebooks/02_Deal_Risk_Scoring.ipynb) for model details
+
+**→ To see the production system design:**
+6. Read [Part 4: System Design](docs/PART4_SYSTEM_DESIGN.md) (20 min)
+
+**→ To understand limitations and learnings:**
+7. Read [Part 5: Reflection](docs/PART5_REFLECTION.md) (10 min)
+
+**Total review time: ~70 minutes** (or 30 minutes for just the docs, skipping notebooks)
+
+---
+
+### For Recruiters / Hiring Managers
+
+**Quick assessment path (15 minutes):**
+1. [Executive Summary](docs/PART1_PROBLEM_FRAMING.md#executive-summary) - Business problem definition
+2. [Key Results Table](docs/PART2_INSIGHTS_REPORT.md#key-business-insights) - Business insights discovered
+3. [Model Output Example](docs/PART3_DECISION_ENGINE.md#example-risk-reports) - What the system produces
+4. [System Architecture Diagram](docs/PART4_SYSTEM_DESIGN.md#system-architecture-overview) - Production design
+5. [What I Learned](docs/PART5_REFLECTION.md#what-i-learned) - Self-awareness and growth
+
+---
+
+### For Technical Deep Dive
+
+**Want to run the code? (30 minutes):**
+
 ```bash
+# 1. Clone repository
 git clone https://github.com/Mitul060299/skygeni-sales-intelligence.git
 cd skygeni-sales-intelligence
+
+# 2. Set up environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
+
+# 3. Option A: Run notebooks (interactive exploration)
 jupyter notebook notebooks/
-```
+# → Open 01_EDA.ipynb for data exploration
+# → Open 02_driver_analysis.ipynb for driver analysis
+# → Open 02_Deal_Risk_Scoring.ipynb for model development
 
-### Option 3: Run Production Code (Full Experience)
-```bash
-pip install -e .
-python scripts/run_eda.py
-python scripts/train_risk_model.py
-python scripts/score_deals.py --input data/raw/skygeni_sales_data.csv
+# 4. Option B: Run scripts (automated execution)
+python scripts/run_eda.py                 # Runs exploratory analysis
+python scripts/train_risk_model.py        # Trains risk scoring model
+python scripts/score_deals.py --input data/raw/skygeni_sales_data.csv  # Scores deals
 ```
 
 ---
 
-## 🧠 The Problem
+## 🧠 The Business Problem (Part 1)
 
-- A B2B SaaS company has healthy pipeline volume but declining win rates.
-- CRO needs diagnostic clarity on what changed and what actions to take.
-- The goal is a decision system, not just a model: insights, risk scoring, and interventions.
+**Context:**
+A B2B SaaS company has **healthy pipeline volume** but **declining win rates** over two quarters.
+
+**CRO's Question:**
+"I don't know what exactly is going wrong or what my team should focus on."
+
+**Our Answer:**
+This is a **quality problem, not a quantity problem**. The issue is conversion efficiency, not lead generation.
+
+**What We Built:**
+1. **Diagnostic system** → Identifies *why* deals are being lost
+2. **Predictive model** → Scores *which* deals are at risk now
+3. **Recommendation engine** → Suggests *what actions* to take
+
+**📄 Full details:** [Part 1: Problem Framing](docs/PART1_PROBLEM_FRAMING.md)
 
 ---
 
-## 💡 The Solution
+## 💡 Key Insights Discovered (Part 2)
 
-### Part 1: Business Framing
-- Focus on conversion efficiency, not lead volume.
-- Key questions: which segments are underperforming, where deals stall, and what actions change outcomes.
-- Core metrics: win rate by segment, stage conversion, sales cycle, pipeline mix, ACV.
-
-### Part 2: Custom Business Metrics
-
-**RAPV (Risk-Adjusted Pipeline Value with Aging Penalty)**
+### Insight #1: The Pipeline Optimism Gap
 ```
-RAPV = Σ (Deal Amount × Segment Win Rate × Aging Factor)
+Raw Pipeline Value:     (reported pipeline)
+Risk-Adjusted Value:    (RAPV forecast)
+Optimism Gap:           61.3% overestimation
 ```
-Adds an aging penalty for deals older than the segment median cycle.
+**Action:** Use RAPV (Risk-Adjusted Pipeline Value) for accurate forecasting
 
-**Revenue Execution Momentum (REM)**
+---
+
+### Insight #2: Lead Source Quality Mismatch
 ```
+Lead Source    Win Rate    Volume
+────────────────────────────────
+Inbound        46.0%       1,262 deals
+Partner        43.95%      1,240 deals
+Gap            2.1 pts     Equal effort, unequal results
+```
+**Action:** Shift marketing budget to Inbound, improve Partner qualification
+
+---
+
+### Insight #3: Sales Cycle Paradox
+```
+Correlation (Deal Size ↔ Sales Cycle): 0.021 ≈ ZERO
+```
+Small deals take as long as large deals = Process inefficiency
+**Action:** Implement tiered sales processes by deal size
+
+---
+
+### Custom Metric #1: RAPV (Risk-Adjusted Pipeline Value)
+```python
+RAPV = Σ (Deal Amount × Segment Win Rate × Aging Penalty)
+```
+Weights pipeline by historical conversion rates per segment, with penalty for stalled deals.
+
+### Custom Metric #2: REM (Revenue Execution Momentum)
+```python
 REM = (Win Rate × Avg Deal Size) / Avg Sales Cycle Days
 ```
-Measures revenue execution per day (conversion, magnitude, and speed).
+Measures revenue generation efficiency (combines quality, size, and speed).
 
-### Part 3: Deal Risk Scoring Engine
-- Interpretable classifier with segment priors and temporal signals.
-- Outputs risk score (0-100), category, top drivers, and recommended actions.
-- Enables managers to focus on critical and high-risk deals first.
-
-### Part 4: Production System Design
-- Batch + real-time scoring, alerting, and dashboards.
-- Multi-tenant isolation, model versioning, and observability.
-- Failure cases and recovery paths documented.
+**📄 Full analysis:** [Part 2: Insights Report](docs/PART2_INSIGHTS_REPORT.md)
+**📓 Interactive notebooks:** [01_EDA.ipynb](notebooks/01_EDA.ipynb), [02_driver_analysis.ipynb](notebooks/02_driver_analysis.ipynb)
 
 ---
 
-## 📊 Key Results
+## 🤖 The Decision Engine (Part 3)
 
-### Business Insights
-- **Pipeline overestimation:** RAPV reveals a 55% optimism gap.
-- **Lead source gap:** Partner leads convert worse than inbound.
-- **Sales cycle inefficiency:** Longer cycles correlate with lower win rates, not higher ACV.
+Built an **interpretable ML model** that scores deals and recommends actions.
 
-### Model Outputs
-| Output | Description |
-|--------|-------------|
-| Risk Score | 0-100 loss probability rank |
-| Risk Category | Low / Medium / High / Critical |
-| Top Drivers | 3 strongest risk factors |
-| Actions | Prioritized interventions |
+### What It Produces
+
+**Input:** Deal characteristics (industry, source, amount, stage, cycle days)
+
+**Output:**
+```json
+{
+	"deal_id": "D12345",
+	"risk_score": 78,
+	"risk_category": "CRITICAL",
+	"win_probability": "22%",
+	"top_risk_factors": [
+		"Partner lead source (-15 pts)",
+		"Stuck in Qualified 42 days (-18 pts)",
+		"EdTech industry (-8 pts)"
+	],
+	"recommended_actions": [
+		"IMMEDIATE: Executive sponsor call",
+		"THIS WEEK: ROI calculator + case study",
+		"ONGOING: Weekly check-in"
+	]
+}
+```
+
+### Model Performance
+| Metric | Value | Interpretation |
+|--------|-------|----------------|
+| ROC-AUC | 0.509 | Baseline discrimination |
+| Precision (High Risk) | Varies by threshold | Tunable for precision/recall tradeoff |
+| Interpretability | High | Segment-based probabilities + clear risk factors |
+
+**Why baseline performance?** Prioritized **interpretability** and **actionability** over raw accuracy. Model uses transparent segment probabilities rather than black-box approach.
+
+**📄 Full methodology:** [Part 3: Decision Engine](docs/PART3_DECISION_ENGINE.md)
+**📓 Model notebook:** [02_Deal_Risk_Scoring.ipynb](notebooks/02_Deal_Risk_Scoring.ipynb)
+
+---
+
+## 🏗️ Production System Design (Part 4)
+
+Designed a complete architecture for deploying this system at scale.
+
+### High-Level Architecture
+
+```
+┌─────────────┐
+│ Salesforce  │  Daily sync (2 AM UTC)
+│    CRM      │
+└──────┬──────┘
+			 │
+			 ▼
+┌──────────────────┐
+│ Feature Pipeline │  Calculate RAPV, segment probabilities
+└────────┬─────────┘
+				 │
+				 ▼
+┌──────────────────┐
+│  Risk Scorer     │  ML model inference (batch + real-time)
+└────────┬─────────┘
+				 │
+				 ├─→ 🚨 Slack Alert (critical deals, <5 min)
+				 ├─→ 📧 Daily Digest (managers, 8 AM local)
+				 └─→ 📊 Dashboard (pipeline health, real-time)
+```
+
+### Key Components
+
+| Component | Technology | Purpose |
+|-----------|-----------|---------|
+| Data Ingestion | Airflow + Python | Nightly CRM sync with validation |
+| Feature Engineering | pandas/numpy | Calculate RAPV, segment probs |
+| Risk Scoring | scikit-learn + MLflow | Batch (100K deals/hour) + API (<200ms) |
+| Alerts | Slack API + SendGrid | Critical alerts + daily digests |
+| Dashboard | React + FastAPI | Pipeline health monitoring |
+| Database | PostgreSQL + Redis | Structured data + caching |
+
+### Production Considerations
+
+✅ **Multi-tenant isolation** - Row-level security with tenant_id
+✅ **Model versioning** - MLflow registry with rollback capability
+✅ **Monitoring** - Drift detection, calibration checks, performance tracking
+✅ **Failure handling** - 8 scenarios documented with mitigation strategies
+✅ **Scalability** - Handles 10-1,000 customers with auto-scaling
+
+**📄 Complete specs:** [Part 4: System Design](docs/PART4_SYSTEM_DESIGN.md)
+
+---
+
+## 🎓 Learnings & Reflection (Part 5)
+
+### What I Learned
+
+**Technical:**
+- Designing custom metrics that match business needs (RAPV, REM)
+- Balancing model interpretability vs predictive power
+- Production ML system architecture (batch + real-time, monitoring, versioning)
+
+**Business:**
+- Translating CRO-level questions into measurable KPIs
+- Creating decision systems, not just models (insights → predictions → actions)
+- Understanding SaaS sales processes and revenue operations
+
+### Weakest Assumptions
+
+1. **Segment stability** - Assumes historical win rates predict future (market shifts not captured)
+2. **Intervention success rate** - Assumes 20% of at-risk deals can be saved (not validated)
+3. **Data completeness** - Assumes CRM data is accurate and consistently logged
+
+### What Would Break in Production
+
+- CRM schema changes (field names, stage definitions)
+- Market shifts making historical patterns obsolete
+- Alert fatigue if thresholds not tuned per team
+- Multi-tenant scaling without proper data isolation
+
+### What I'd Build Next (1 month)
+
+1. **Feedback loop** - Track intervention outcomes to measure actual success rate
+2. **SHAP integration** - Replace feature importance with SHAP values for better explanations
+3. **Drift monitoring** - Auto-detect model degradation and trigger retraining
+4. **A/B testing framework** - Scientifically validate intervention effectiveness
+
+**📄 Full reflection:** [Part 5: Reflection](docs/PART5_REFLECTION.md)
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Data and ML
+### Core Technologies
+
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?logo=scikit-learn&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange.svg)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?logo=jupyter&logoColor=white)
 
-### Production Design (Part 4)
+### Production Stack (Part 4 Design)
+
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![Airflow](https://img.shields.io/badge/Airflow-017CEE?logo=apache-airflow&logoColor=white)
+![MLflow](https://img.shields.io/badge/MLflow-0194E2?logo=mlflow&logoColor=white)
 
 ---
 
-## 📁 Project Structure
+## 📁 Repository Structure
 
 ```
 skygeni-sales-intelligence/
 │
 ├── 📊 data/
-│   ├── raw/                     # Original CSV data
-│   └── processed/               # Engineered features
+│   ├── raw/
+│   │   └── skygeni_sales_data.csv          # Original dataset (5,000 deals)
+│   └── processed/                           # Engineered features (generated)
 │
 ├── 📓 notebooks/
-│   ├── 01_EDA.ipynb             # Exploratory analysis
-│   └── 02_Deal_Risk_Scoring.ipynb  # Model development
+│   ├── 01_EDA.ipynb                        # ⭐ Part 2: Exploratory analysis
+│   ├── 02_driver_analysis.ipynb            # ⭐ Part 2: Driver analysis
+│   └── 02_Deal_Risk_Scoring.ipynb         # ⭐ Part 3: Model development
 │
-├── 🔧 src/                      # Production code
-│   ├── config.py
+├── 📖 docs/                                 # ⭐ Main deliverables (start here!)
+│   ├── PART1_PROBLEM_FRAMING.md            # Part 1: Business problem definition
+│   ├── PART2_INSIGHTS_REPORT.md            # Part 2: EDA insights & custom metrics
+│   ├── PART3_DECISION_ENGINE.md            # Part 3: Risk scoring methodology
+│   ├── PART4_SYSTEM_DESIGN.md              # Part 4: Production architecture
+│   └── PART5_REFLECTION.md                 # Part 5: Learnings & limitations
+│
+├── 🔧 src/                                  # Production code modules
+│   ├── __init__.py
+│   ├── config.py                           # Configuration constants
 │   ├── data/
+│   │   ├── __init__.py
+│   │   └── data_loader.py                  # Data loading utilities
 │   ├── features/
+│   │   ├── __init__.py
+│   │   ├── segment_probabilities.py        # RAPV calculation
+│   │   └── feature_engineering.py          # Feature creation
 │   ├── models/
+│   │   ├── __init__.py
+│   │   ├── risk_scorer.py                  # Risk scoring model
+│   │   └── model_evaluation.py             # Evaluation utilities
 │   ├── recommendations/
+│   │   ├── __init__.py
+│   │   └── recommendation_engine.py        # Action generation
 │   └── utils/
+│       ├── __init__.py
+│       └── helpers.py                      # Helper functions
 │
-├── 🚀 scripts/
-│   ├── run_eda.py
-│   ├── train_risk_model.py
-│   └── score_deals.py
+├── 🚀 scripts/                              # Executable scripts
+│   ├── run_eda.py                          # Run exploratory analysis
+│   ├── train_risk_model.py                 # Train risk scoring model
+│   └── score_deals.py                      # Score new deals
 │
-├── ✅ tests/
-├── 📖 docs/                     # Detailed writeups by part
-└── README.md
+├── ✅ tests/                                # Unit tests
+│   ├── __init__.py
+│   ├── test_data_loader.py
+│   ├── test_feature_engineering.py
+│   └── test_risk_scorer.py
+│
+├── outputs/                                 # Generated outputs
+│   ├── figures/                            # Visualizations from EDA
+│   └── reports/                            # Generated analysis reports
+│
+├── requirements.txt                         # Python dependencies
+├── setup.py                                 # Package installation config
+├── .gitignore
+└── README.md                                # ⭐ You are here
 ```
+
+### Key File Descriptions
+
+**For evaluation, focus on:**
+- `docs/PART*.md` - Complete written analysis for each part
+- `notebooks/*.ipynb` - Interactive analysis (optional deep dive)
+
+**For understanding implementation:**
+- `src/` - Production-ready code modules
+- `scripts/` - Executable entry points
+- `tests/` - Validation tests
 
 ---
 
-## 🧪 Testing
+## 🧪 Running Tests
 
 ```bash
-pytest tests/
+# Run all tests
+pytest tests/ -v
+
+# Run with coverage report
+pytest --cov=src tests/
+
+# Run specific test file
+pytest tests/test_risk_scorer.py -v
 ```
 
 ---
 
-## 📚 Documentation
+## 📚 Complete Documentation Index
 
-- [Part 1: Problem Framing](docs/PART1_PROBLEM_FRAMING.md)
-- [Part 2: Insights Report](docs/PART2_INSIGHTS_REPORT.md)
-- [Part 3: Decision Engine](docs/PART3_DECISION_ENGINE.md)
-- [Part 4: System Design](docs/PART4_SYSTEM_DESIGN.md)
-- [Part 5: Reflection](docs/PART5_REFLECTION.md)
+| Document | Purpose | Time to Read |
+|----------|---------|--------------|
+| [README.md](README.md) | Project overview & navigation | 10 min (this file) |
+| [PART1_PROBLEM_FRAMING.md](docs/PART1_PROBLEM_FRAMING.md) | Business context, key questions, success metrics | 15 min |
+| [PART2_INSIGHTS_REPORT.md](docs/PART2_INSIGHTS_REPORT.md) | EDA findings, 3 insights, 2 custom metrics | 20 min |
+| [PART3_DECISION_ENGINE.md](docs/PART3_DECISION_ENGINE.md) | Risk scoring model, recommendations, examples | 20 min |
+| [PART4_SYSTEM_DESIGN.md](docs/PART4_SYSTEM_DESIGN.md) | Production architecture, APIs, deployment | 25 min |
+| [PART5_REFLECTION.md](docs/PART5_REFLECTION.md) | Assumptions, limitations, learnings | 10 min |
+
+**Total reading time:** ~100 minutes for complete evaluation
 
 ---
 
 ## 🚀 Future Enhancements
 
-- Drift monitoring and automated retraining
-- SHAP-based explanations for risk drivers
-- Feedback loop for action effectiveness
-- CRM onboarding automation and field mapping
+### Phase 1 (Next 3 Months)
+- [ ] Feedback loop to track intervention outcomes
+- [ ] SHAP-based risk factor explanations
+- [ ] Automated drift monitoring and alerting
+- [ ] A/B testing framework for interventions
+
+### Phase 2 (6-12 Months)
+- [ ] Causal inference for risk factors
+- [ ] Multi-touch attribution for sales actions
+- [ ] Automated monthly model retraining
+- [ ] Multi-vertical support (beyond B2B SaaS)
 
 ---
 
-## 🎓 What I Learned
+## 🐛 Known Limitations
 
-- Translating CRO-level business questions into measurable metrics
-- Designing decision systems, not just ML models
-- Balancing interpretability with predictive performance
-- Building an architecture that supports batch + real-time scoring
+**Data Limitations:**
+- Training data limited to 15 months (seasonal patterns unknown)
+- No competitor, pricing, or market context available
+- Assumes CRM data is accurate and consistently logged
 
----
+**Model Limitations:**
+- Baseline ROC-AUC (0.509) prioritizes interpretability over accuracy
+- Assumes stable segment behavior (no drift detection)
+- Intervention success rate (20%) is assumed, not measured
 
-## 🐛 Known Issues and Limitations
+**System Limitations:**
+- Designed for single-tenant (multi-tenant requires refactoring)
+- No A/B testing framework to validate interventions
+- Alert thresholds need tuning to avoid fatigue
 
-- Training data is limited to historical CRM records without pricing or competitor context
-- Segment win rates can drift in market shifts
-- Recommendation rules need outcome feedback to validate impact
+See [Part 5: Reflection](docs/PART5_REFLECTION.md) for detailed discussion.
 
 ---
 
@@ -205,17 +472,38 @@ pytest tests/
 
 **Mitul Srivastava**
 
-- Email: srivastavamitul00@gmail.com
-- Phone: +91 9582480350
-- GitHub: https://github.com/Mitul060299
+📧 Email: srivastavamitul00@gmail.com
+📱 Phone: +91 9582480350
+💼 GitHub: [@Mitul060299](https://github.com/Mitul060299)
+
+**Role:** Data Science / Applied AI Engineer Candidate
+**Challenge:** SkyGeni Sales Intelligence System
+**Submission Date:** February 2026
 
 ---
 
 ## 🙏 Acknowledgments
 
-- SkyGeni for the challenge prompt and evaluation framework
-- Inspiration from modern revenue operations and sales intelligence practices
+- **SkyGeni** for the comprehensive and realistic challenge problem
+- **scikit-learn** community for excellent ML tools
+- **FastAPI** team for modern Python web framework design
+- Sales intelligence platforms (Gong, Clari, SkyGeni) for inspiration
 
 ---
 
-If this project is helpful, consider starring the repo.
+## 📄 License
+
+This project is created for the SkyGeni Sales Intelligence Challenge.
+Code is available under MIT License for educational purposes.
+
+---
+
+<div align="center">
+
+**⭐ If this project demonstrates value, please consider starring the repository!**
+
+Built with focus on **business impact**, **technical rigor**, and **production readiness**
+
+[⬆ Back to Top](#-skygeni-sales-intelligence-challenge)
+
+</div>

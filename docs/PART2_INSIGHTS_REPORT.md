@@ -41,7 +41,7 @@ REM captures conversion efficiency, revenue magnitude, and speed in a single met
 
 ### Insight 1: Pipeline Overestimation (RAPV Gap)
 
-**Finding:** Risk-adjusted pipeline value is ~55% lower than raw pipeline value.
+**Finding:** Risk-adjusted pipeline value is ~61.3% lower than raw pipeline value.
 
 **Why it matters:** The CRO is forecasting based on inflated pipeline. This creates false confidence and late-stage surprises.
 
@@ -49,7 +49,7 @@ REM captures conversion efficiency, revenue magnitude, and speed in a single met
 
 ### Insight 2: Lead Source Efficiency Gap
 
-**Finding:** Partner-sourced leads show a ~4.5% lower win rate than inbound leads.
+**Finding:** Partner-sourced leads show a ~2.1% lower win rate than inbound leads.
 
 **Why it matters:** The funnel is healthy, but lead quality varies significantly. Rep time is being spent on lower-converting channels.
 
