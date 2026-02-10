@@ -7,6 +7,7 @@ Usage:
 """
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -15,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 import joblib
 import pandas as pd
 
-from config import MODEL_FEATURES, MODELS_DIR
+from config import MODEL_FEATURES, MODELS_DIR, SEGMENT_COLUMNS
 from features.feature_engineering import engineer_risk_features
 from features.segment_probabilities import calculate_segment_probabilities
 from data.data_loader import add_temporal_features, prepare_target_variable
@@ -44,7 +45,13 @@ def main() -> None:
         df = prepare_target_variable(df)
     df = add_temporal_features(df)
 
-    segment_probs = calculate_segment_probabilities(df, ["industry", "product_type", "lead_source", "region"])
+    segment_path = MODELS_DIR / "segment_probabilities.json"
+    if segment_path.exists():
+        with segment_path.open("r", encoding="utf-8") as handle:
+            segment_probs = json.load(handle)
+    else:
+        print("[WARN] Segment probabilities not found; computing from input data")
+        segment_probs = calculate_segment_probabilities(df, SEGMENT_COLUMNS)
     df_features = engineer_risk_features(df, segment_probs)
 
     model_path = MODELS_DIR / "risk_scoring_model.pkl"

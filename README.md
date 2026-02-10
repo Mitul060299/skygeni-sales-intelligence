@@ -255,9 +255,9 @@ Designed a complete architecture for deploying this system at scale.
 
 ### Production Considerations
 
-✅ **Multi-tenant isolation** - Row-level security with tenant_id
-✅ **Model versioning** - MLflow registry with rollback capability
-✅ **Monitoring** - Drift detection, calibration checks, performance tracking
+✅ **Multi-tenant isolation (design)** - Row-level security with tenant_id
+✅ **Model versioning (design)** - MLflow registry with rollback capability
+✅ **Monitoring (design)** - Drift detection, calibration checks, performance tracking
 ✅ **Failure handling** - 8 scenarios documented with mitigation strategies
 ✅ **Scalability** - Handles 10-1,000 customers with auto-scaling
 
@@ -456,11 +456,11 @@ pytest tests/test_risk_scorer.py -v
 
 **Model Limitations:**
 - Baseline ROC-AUC (0.509) prioritizes interpretability over accuracy
-- Assumes stable segment behavior (no drift detection)
+- Assumes stable segment behavior (drift detection is a planned capability)
 - Intervention success rate (20%) is assumed, not measured
 
 **System Limitations:**
-- Designed for single-tenant (multi-tenant requires refactoring)
+- Multi-tenant isolation is a design target; production enforcement requires dedicated implementation and testing
 - No A/B testing framework to validate interventions
 - Alert thresholds need tuning to avoid fatigue
 

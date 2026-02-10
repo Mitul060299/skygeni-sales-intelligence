@@ -80,8 +80,11 @@ def add_temporal_features(df: pd.DataFrame) -> pd.DataFrame:
         DataFrame with additional temporal features.
     """
     df_copy = df.copy()
+    if "created_date" not in df_copy.columns:
+        raise ValueError("created_date column is required to add temporal features")
     df_copy["created_quarter"] = df_copy["created_date"].dt.to_period("Q")
-    df_copy["closed_quarter"] = df_copy["closed_date"].dt.to_period("Q")
+    if "closed_date" in df_copy.columns:
+        df_copy["closed_quarter"] = df_copy["closed_date"].dt.to_period("Q")
     df_copy["created_month"] = df_copy["created_date"].dt.to_period("M")
     df_copy["month"] = df_copy["created_date"].dt.month
     df_copy["days_of_week"] = df_copy["created_date"].dt.dayofweek
