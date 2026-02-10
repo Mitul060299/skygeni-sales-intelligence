@@ -267,37 +267,42 @@ Designed a complete architecture for deploying this system at scale.
 
 ## 🎓 Learnings & Reflection (Part 5)
 
-### What I Learned
+### Strengths and Gaps
 
-**Technical:**
-- Designing custom metrics that match business needs (RAPV, REM)
-- Balancing model interpretability vs predictive power
-- Production ML system architecture (batch + real-time, monitoring, versioning)
+**Strengths:**
+- Identified the business problem (quality, not quantity)
+- Developed useful custom metrics (RAPV, Deal Momentum)
+- Built a transparent, interpretable system
+- Documented model limitations explicitly
 
-**Business:**
-- Translating CRO-level questions into measurable KPIs
-- Creating decision systems, not just models (insights → predictions → actions)
-- Understanding SaaS sales processes and revenue operations
+**Gaps:**
+- Model performance is insufficient (0.509 ROC-AUC)
+- Critical behavioral features are missing
+- Recommendations are untested (no validation)
+- The 20% intervention success rate is assumed
 
 ### Weakest Assumptions
 
-1. **Segment stability** - Assumes historical win rates predict future (market shifts not captured)
-2. **Intervention success rate** - Assumes 20% of at-risk deals can be saved (not validated)
-3. **Data completeness** - Assumes CRM data is accurate and consistently logged
+1. **Data quality and completeness** - CRM data is clean, timely, and consistently logged
+2. **Stable segment behavior** - Historical win rates remain reliable over time
+3. **Comparable sales process** - Sales cycle and stage progression are standardized
+4. **Model predictive accuracy** - CRM-only features are sufficient for prediction
+5. **Intervention effectiveness** - Actions save 20% of at-risk deals
 
 ### What Would Break in Production
 
-- CRM schema changes (field names, stage definitions)
-- Market shifts making historical patterns obsolete
-- Alert fatigue if thresholds not tuned per team
-- Multi-tenant scaling without proper data isolation
+- CRM schema changes and field renames
+- Concept drift in segment win rates
+- Cold-start scenarios for new segments
+- Alert fatigue from over-triggering
+- Integration failures (API limits, auth, network)
 
 ### What I'd Build Next (1 month)
 
-1. **Feedback loop** - Track intervention outcomes to measure actual success rate
-2. **SHAP integration** - Replace feature importance with SHAP values for better explanations
-3. **Drift monitoring** - Auto-detect model degradation and trigger retraining
-4. **A/B testing framework** - Scientifically validate intervention effectiveness
+1. **Drift monitoring and retraining** - Calibration checks and automated retraining
+2. **SHAP explainability** - Per-deal explanations and counterfactuals
+3. **Feedback loop** - Track actions and measure outcomes
+4. **Tenant onboarding toolkit** - Data quality checks and field mapping
 
 **📄 Full reflection:** [Part 5: Reflection](docs/PART5_REFLECTION.md)
 
